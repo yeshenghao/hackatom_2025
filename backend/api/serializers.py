@@ -1,13 +1,14 @@
 # serializers.py
-from rest_framework import serializers  #pip install djangorestframework
-from .models import Availability, Meeting
+from rest_framework import serializers
+from .models import Disponibilidad
+from django.contrib.auth.models import User
 
-class AvailabilitySerializer(serializers.ModelSerializer):
+class DisponibilidadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Availability
+        model = Disponibilidad
         fields = '__all__'
 
-class MeetingSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Meeting
-        fields = '__all__'
+        model = User
+        fields = ['id', 'username']
