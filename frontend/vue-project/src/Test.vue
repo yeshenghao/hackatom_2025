@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Test Teórico de Conducir</h1>
+    <h1>Test</h1>
 
     <div v-if="!showResult">
       <h2>Pregunta {{ currentIndex + 1 }} de {{ questions.length }}</h2>

@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <h1>Bienvenido al Test Teórico de Conducir</h1>
-    <p>Prepárate para el examen oficial practicando con preguntas reales.</p>
-    <p>Al final del test sabrás si has aprobado o necesitas practicar más.</p>
+    <h1>Bienvenido al Test de Conocimiento sobre Cupra</h1>
+    <p>¿Estás listo para descubrir todo sobre Cupra?</p>
+    <p>
+      Este test te ayudará a conocer mejor la marca y cómo funciona, mientras
+      aprendes de una forma interactiva y divertida.
+    </p>
     <button @click="$router.push('/test')">Comenzar Test</button>
   </div>
 </template>
