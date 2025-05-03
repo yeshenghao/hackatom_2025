@@ -1,4 +1,4 @@
-@import './base.css';
+@import "./base.css";
 
 #app {
   max-width: 1280px;
@@ -25,11 +25,14 @@ a,
   body {
     display: flex;
     place-items: center;
+    background-image: url("https://cdn.topgear.es/sites/navi.axelspringer.es/public/media/image/2022/01/cupra-formentor-2597011.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
 }
