@@ -1,17 +1,53 @@
-# api/views.py
 from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from .models import Question, Score
 from .serializers import QuestionSerializer, ScoreSerializer
+import random
 
 class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
+    @action(detail=False, methods=['get'])
+    def random_set(self, request):
+        count = int(request.query_params.get('count', 2))  # número de preguntas por defecto = 5
+        questions = list(self.queryset)
+        if len(questions) < count:
+            return Response({'error': 'Not enough questions in the database.'}, status=400)
+        random_questions = random.sample(questions, count)
+        serializer = self.get_serializer(random_questions, many=True)
+        return Response(serializer.data)
+
 class ScoreViewSet(viewsets.ModelViewSet):
     queryset = Score.objects.all()
     serializer_class = ScoreSerializer
 
+    @action(detail=False, methods=['post'])
+    def submit(self, request):
+        """
+        Espera un JSON con una lista de respuestas:
+        {
+            "answers": [
+                {"question": 1, "chosen_choice": 4},
+                {"question": 2, "chosen_choice": 9},
+                ...
+            ]
+        }
+        """
+        answers = request.data.get('answers', [])
+        correct_count = 0
 
+        for ans in answers:
+            serializer = self.get_serializer(data=ans)
+            if serializer.is_valid():
+                serializer.save()
+                if serializer.instance.correct:
+                    correct_count += 1
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({'score': correct_count, 'total': len(answers)})
 
 
 
