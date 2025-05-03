@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.log
+
+# Django
+db.sqlite3
+*.pyc
+
+# Entornos virtuales
+venv/
+.env
+
+# Node.js
+node_modules/
+frontend/vue-project/node_modules/
+package-lock.json
+
+# IDEs / editores
+.vscode/
+.idea/
+*.swp
+
+# Otros
+.DS_Store
