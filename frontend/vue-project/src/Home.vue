@@ -1,50 +1,29 @@
 <template>
-  <div class="home">
-    <h1>Bienvenido al Test de Conocimiento sobre Cupra</h1>
-    <p>¿Estás listo para descubrir todo sobre Cupra?</p>
-    <p>
-      Este test te ayudará a conocer mejor la marca y cómo funciona, mientras
-      aprendes de una forma interactiva y divertida.
-    </p>
-    <button @click="$router.push('/test')">Comenzar Test</button>
-  </div>
+	<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#545c64"
+		text-color="#fff" active-text-color="#ffd04b" @select="handleSelect">
+		<el-menu-item index="1">Inicio</el-menu-item>
+		<el-sub-menu index="2">
+			<template #title>Modelos</template>
+			<el-menu-item index="2-1">Un modelo</el-menu-item>
+			<el-menu-item index="2-2">Otro modelo</el-menu-item>
+			<el-menu-item index="2-3">Modelo 3</el-menu-item>
+			<el-sub-menu index="2-4">
+				<template #title>Series s</template>
+				<el-menu-item index="2-4-1">Serie s one</el-menu-item>
+				<el-menu-item index="2-4-2">Serie s two</el-menu-item>
+				<el-menu-item index="2-4-3">Serie s three</el-menu-item>
+			</el-sub-menu>
+		</el-sub-menu>
+		<el-menu-item index="3" disabled>Questionario</el-menu-item>
+		<el-menu-item index="4">Reto diario</el-menu-item>
+	</el-menu>
 </template>
 
-<script>
-export default {
-  name: "Home",
-};
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+	console.log(key, keyPath)
+}
 </script>
-
-<style scoped>
-.home {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  color: #007bff;
-}
-
-p {
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>

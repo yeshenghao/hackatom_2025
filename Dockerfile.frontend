@@ -5,6 +5,7 @@ WORKDIR /app
 COPY frontend/vue-project /app/
 
 RUN npm install
+RUN npm install element-plus --save
 
 EXPOSE 5173
 CMD ["npm", "run", "dev", "--", "--host"]
