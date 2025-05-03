@@ -1,19 +1,12 @@
 from django.contrib import admin
+from .models import Pregunta, Respuesta
 
-# Register your models here.
-from .models import Question, Choice, Score
+@admin.register(Pregunta)
+class PreguntaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'texto', 'categoria')
+    search_fields = ('texto',)
 
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'text', 'created_at')
-    search_fields = ('text',)
-
-@admin.register(Choice)
-class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'question', 'text', 'is_correct')
-    list_filter = ('question',)
-
-@admin.register(Score)
-class ScoreAdmin(admin.ModelAdmin):
-    list_display = ('id', 'question', 'chosen_choice', 'correct', 'ts')
-    list_filter = ('correct',)
+@admin.register(Respuesta)
+class RespuestaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'pregunta', 'texto', 'es_correcta')
+    list_filter = ('pregunta', 'es_correcta')

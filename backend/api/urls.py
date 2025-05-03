@@ -1,8 +1,10 @@
 from rest_framework.routers import DefaultRouter
-from .views import QuestionViewSet, ScoreViewSet
+from django.urls import path
+from .views import PreguntaViewSet, ResultadoView
 
 router = DefaultRouter()
-router.register(r'quiz', QuestionViewSet, basename='quiz')
-router.register(r'score', ScoreViewSet, basename='score')
+router.register(r'quiz', PreguntaViewSet, basename='quiz')
 
-urlpatterns = router.urls
+urlpatterns = router.urls + [
+    path('resultado/', ResultadoView.as_view(), name='resultado'),
+]
