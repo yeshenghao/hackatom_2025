@@ -89,10 +89,10 @@ DATABASES = {
 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'mypassword',
-        'HOST': 'db',
+        'NAME': 'project_cuper',
+        'USER': 'postgres',
+        'PASSWORD': 'root1234',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
