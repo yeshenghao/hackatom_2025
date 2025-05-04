@@ -2,24 +2,20 @@
   <div class="app">
     <h1>Test</h1>
 
-    <div v-if="loading">
-      <p>Cargando preguntas...</p>
-    </div>
-
-    <div v-else-if="!showResult">
+    <div v-if="!showResult">
       <h2>Pregunta {{ currentIndex + 1 }} de {{ questions.length }}</h2>
-      <p>{{ currentQuestion.texto }}</p>
+      <p>{{ currentQuestion.question }}</p>
 
       <ul>
-        <li v-for="(option, index) in currentQuestion.respuestas" :key="option.id">
+        <li v-for="(option, index) in currentQuestion.options" :key="index">
           <label>
             <input
               type="radio"
               :name="'question-' + currentIndex"
-              :value="option.id"
+              :value="option"
               v-model="answers[currentIndex]"
             />
-            {{ option.texto }}
+            {{ option }}
           </label>
         </li>
       </ul>
@@ -43,12 +39,31 @@
 export default {
   data() {
     return {
-      questions: [],
+      questions: [
+        {
+          question: "¿Cuál es el límite de velocidad en una vía urbana?",
+          options: ["30 km/h", "50 km/h", "70 km/h"],
+          correct: "50 km/h",
+        },
+        {
+          question: "¿Qué indica una señal de stop?",
+          options: [
+            "Reducir velocidad",
+            "Ceder el paso",
+            "Detenerse obligatoriamente",
+          ],
+          correct: "Detenerse obligatoriamente",
+        },
+        {
+          question: "¿Se puede adelantar en una línea continua?",
+          options: ["Sí", "No", "Solo si hay visibilidad"],
+          correct: "No",
+        },
+      ],
       currentIndex: 0,
       answers: [],
       showResult: false,
-      loading: true,
-      passingScore: 7, // por ejemplo, 7 de 10 correctas
+      passingScore: 2,
     };
   },
   computed: {
@@ -56,29 +71,12 @@ export default {
       return this.questions[this.currentIndex];
     },
     score() {
-      return this.questions.reduce((acc, question, index) => {
-        const selectedId = this.answers[index];
-        const selectedAnswer = question.respuestas.find(
-          (r) => r.id === selectedId
-        );
-        return selectedAnswer && selectedAnswer.es_correcta ? acc + 1 : acc;
+      return this.questions.reduce((acc, q, i) => {
+        return this.answers[i] === q.correct ? acc + 1 : acc;
       }, 0);
     },
   },
   methods: {
-    async fetchQuestions() {
-      try {
-        const response = await fetch(
-          "http://localhost:8000/api/quiz/random_set/?count=10"
-        );
-        const data = await response.json();
-        this.questions = data;
-      } catch (error) {
-        console.error("Error al cargar preguntas:", error);
-      } finally {
-        this.loading = false;
-      }
-    },
     nextQuestion() {
       if (this.currentIndex < this.questions.length - 1) {
         this.currentIndex++;
@@ -90,18 +88,12 @@ export default {
       this.currentIndex = 0;
       this.answers = [];
       this.showResult = false;
-      this.loading = true;
-      this.fetchQuestions();
     },
-  },
-  mounted() {
-    this.fetchQuestions();
   },
 };
 </script>
 
 <style scoped>
-/* mismo estilo que tenías */
 .app {
   max-width: 600px;
   margin: 2rem auto;

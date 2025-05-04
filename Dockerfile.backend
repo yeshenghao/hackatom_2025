@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY backend /app/
 
+COPY db_dump.sql /app/
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8000
