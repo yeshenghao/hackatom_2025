@@ -17,20 +17,13 @@ const handleSelect = (path: string) => {
 		active-text-color="#ffd04b" 
 		@select="handleSelect"
 		>
-		<el-menu-item index="/">Home</el-menu-item>
+		<el-menu-item index="/">Menú principal</el-menu-item>
 		<el-sub-menu index="2">
-			<template #title>Models</template>
-			<el-menu-item index="2-1">Un modelo</el-menu-item>
-			<el-menu-item index="2-2">Otro modelo</el-menu-item>
-			<el-menu-item index="2-3">Modelo 3</el-menu-item>
-			<el-sub-menu index="2-4">
-				<template #title>Series s</template>
-				<el-menu-item index="2-4-1">Serie s one</el-menu-item>
-				<el-menu-item index="2-4-2">Serie s two</el-menu-item>
-				<el-menu-item index="2-4-3">Serie s three</el-menu-item>
-			</el-sub-menu>
+			<template #title>Modelos</template>
+			<el-menu-item index="/formentor">FORMENTOR</el-menu-item>
+			<el-menu-item index="/tavascan">TAVASCAN</el-menu-item>
 		</el-sub-menu>
 		<el-menu-item index="/test">Test</el-menu-item>
-		<el-menu-item index="/sobre-nosotros">About Us</el-menu-item>
+		<el-menu-item index="/sobre-nosotros">Sobre nosotros</el-menu-item>
 	</el-menu>
 </template>
