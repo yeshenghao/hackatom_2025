@@ -1,11 +1,12 @@
 # CUPRA Challenge – Quiz Web Application
-This is a full-stack web application developed for the HackUPC 2025 challenge proposed by CUPRA. The platform promotes safe driving habits through interactive quizzes and it also showcases the Cupra brand and its vehicle models.
+This project is a full-stack web application developed for the HackUPC 2025 challenge proposed by CUPRA. The platform highlights key aspects of the CUPRA brand, including safe driving habits through interactive quizzes, an AI-powered chatbot that answers user questions, and showcase of the brand’s latest car models.
 
 ## Technologies Used
 - Backend: Django + Django REST Framework (Python)
 - Frontend: Vue.js + Vite
 - Database: PostgreSQL
 - DevOps: Docker + Docker Compose
+- Chatbot: OpenAI API integration
 
 ## Installation
 ### Requirements
